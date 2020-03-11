@@ -29,4 +29,13 @@ public class UsersService {
         return users;
     }
 
+    public List<Users> getAllUsers(){
+        List<Users> users = usersRepository.findAll();
+        return users;
+    }
+
+    public void saveUser(Users user){
+        usersRepository.save(user);
+    }
+
 }

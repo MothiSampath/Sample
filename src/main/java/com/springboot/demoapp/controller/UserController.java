@@ -5,10 +5,7 @@ import com.springboot.demoapp.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,18 @@ public class UserController {
         List<Users> users = usersService.getUsersbyUserName(userName);
 
         return new ResponseEntity<List<Users>>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("getAllUsers")
+    public ResponseEntity<List<Users>> getAllUsers(){
+        List<Users> users = usersService.getAllUsers();
+
+        return new ResponseEntity<List<Users>>(users, HttpStatus.OK);
+    }
+
+    @PostMapping("saveUser")
+    public ResponseEntity<String> saveUser(@RequestBody Users user){
+        usersService.saveUser(user);
+        return new ResponseEntity<String>("success", HttpStatus.OK);
     }
 }
