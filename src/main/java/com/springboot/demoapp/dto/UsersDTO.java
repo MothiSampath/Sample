@@ -1,18 +1,14 @@
-package com.springboot.demoapp.domain;
+package com.springboot.demoapp.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.bson.types.Binary;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
-@Document(collection = "users")
-public class Users {
+public class UsersDTO {
 
-    @Id
     private String id;
 
     private String userName;
@@ -21,6 +17,5 @@ public class Users {
 
     private String password;
 
-    private Binary fileToUpload;
-
+    private MultipartFile fileToUpload;
 }
