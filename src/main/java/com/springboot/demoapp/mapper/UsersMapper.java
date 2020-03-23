@@ -35,4 +35,13 @@ public class UsersMapper {
 
         return usersDTOS;
     }
+
+    public UsersDTO toUsersDto(Users users){
+        UsersDTO usersDTO = new UsersDTO();
+        usersDTO.setEmail(users.getEmail());
+        usersDTO.setId(users.getId());
+        usersDTO.setPassword(users.getPassword());
+        usersDTO.setUserName(users.getUserName());
+        return usersDTO;
+    }
 }

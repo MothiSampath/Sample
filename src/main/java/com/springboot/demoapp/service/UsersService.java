@@ -4,14 +4,17 @@ import com.springboot.demoapp.domain.Users;
 import com.springboot.demoapp.dto.UsersDTO;
 import com.springboot.demoapp.mapper.UsersMapper;
 import com.springboot.demoapp.repository.UsersRepository;
+import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersService {
@@ -43,6 +46,16 @@ public class UsersService {
     public void saveUser(UsersDTO user) throws Exception{
         Users userDomain = usersMapper.toUser(user);
         usersRepository.save(userDomain);
+    }
+
+    public void deleteUser(String id){
+        usersRepository.deleteById(id);
+    }
+
+    public Binary getUserAttachment(String id){
+        Users users = usersRepository.findById(id).get();
+        Binary file = users.getFileToUpload();
+        return file;
     }
 
 }
