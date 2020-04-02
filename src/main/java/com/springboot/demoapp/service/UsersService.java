@@ -4,8 +4,10 @@ import com.springboot.demoapp.domain.Users;
 import com.springboot.demoapp.dto.UsersDTO;
 import com.springboot.demoapp.mapper.UsersMapper;
 import com.springboot.demoapp.repository.UsersRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -16,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class UsersService {
 
@@ -28,6 +31,9 @@ public class UsersService {
     @Autowired
     private UsersMapper usersMapper;
 
+    @Value("${user.service.name}")
+    private String message;
+
     public List<UsersDTO> getUsersbyUserName(String userName){
         Query query = new Query();
         query.addCriteria(Criteria.where("userName").regex("^"+userName));
@@ -38,6 +44,7 @@ public class UsersService {
     }
 
     public List<UsersDTO> getAllUsers(){
+        log.info("from Property >>>>>"+message);
         List<Users> users = usersRepository.findAll();
         List<UsersDTO> usersDTOS = usersMapper.toUsersDto(users);
         return usersDTOS;
