@@ -51,7 +51,8 @@ public class UserController {
 
 //    @GetMapping( value = "getUserAttachment/{id}",
 //              produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    @GetMapping(value = "getUserAttachment/{id}",produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "getUserAttachment/{id}",
+            produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] getAttachmentByUserId(@PathVariable String id){
         Binary file = usersService.getUserAttachment(id);
         return file.getData();
