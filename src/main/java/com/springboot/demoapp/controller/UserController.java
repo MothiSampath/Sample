@@ -57,4 +57,11 @@ public class UserController {
         Binary file = usersService.getUserAttachment(id);
         return file.getData();
     }
+
+    @GetMapping(value = "getPdf/{id}",
+            produces = MediaType.APPLICATION_PDF_VALUE)
+    public @ResponseBody byte[] getPdf(@PathVariable String id){
+        Binary file = usersService.getUserPdf(id);
+        return file.getData();
+    }
 }

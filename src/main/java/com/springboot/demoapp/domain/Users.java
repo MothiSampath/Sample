@@ -23,4 +23,5 @@ public class Users {
 
     private Binary fileToUpload;
 
+    private Binary pdfFile;
 }

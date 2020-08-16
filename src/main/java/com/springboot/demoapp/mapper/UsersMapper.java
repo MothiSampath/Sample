@@ -19,6 +19,7 @@ public class UsersMapper {
         users.setPassword(usersDTO.getPassword());
         users.setUserName(usersDTO.getUserName());
         users.setFileToUpload(new Binary(BsonBinarySubType.BINARY, usersDTO.getFileToUpload().getBytes()));
+        users.setPdfFile(new Binary(BsonBinarySubType.BINARY, usersDTO.getPdfFile().getBytes()));
         return  users;
     }
 

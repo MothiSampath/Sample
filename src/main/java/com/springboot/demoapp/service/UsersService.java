@@ -65,4 +65,10 @@ public class UsersService {
         return file;
     }
 
+    public Binary getUserPdf(String id){
+        Users users = usersRepository.findById(id).get();
+        Binary file = users.getPdfFile();
+        return file;
+    }
+
 }

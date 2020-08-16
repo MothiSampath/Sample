@@ -18,4 +18,6 @@ public class UsersDTO {
     private String password;
 
     private MultipartFile fileToUpload;
+
+    private MultipartFile pdfFile;
 }
